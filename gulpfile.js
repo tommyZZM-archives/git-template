@@ -25,7 +25,7 @@ gulp.task("default",function(){
                         download_archive_config.isdeving = data.dev;
                         download_archive_config.url = data.url;
                         download_archive_config.name = data.name;
-                        download_archive_config.path = data.dev?"./tmp/unnzip":path.join(cwd_path,data.name);
+                        download_archive_config.path = data.dev?"./tmp/unnzip":data.cwd;
                         gulp.start("download-archive");
                         break;
                     }
@@ -59,10 +59,12 @@ gulp.task("check-clear",function(cb){
 gulp.task("download-archive",["check-clear"],function(){
     var config = download_archive_config;
 
+    //console.log(config.path);
+
     return download(config.url)
         .pipe(unzip())
         .pipe(rename(function (path) {
-            //console.log(path.dirname.match(/^(\w|-)+\\?/i))
+            //console.log(path.dirname)
             //console.log(path.dirname,path.dirname.split("\\").join("/").lastIndexOf("/"));
             path.dirname = path.dirname.replace(/^(\w|-)+\\?/i,config.name+"//")
         }))

@@ -11,6 +11,7 @@ var argv = process.argv.slice(2);
 var args = argv.filter(function(ele,i){
     return !(ele.match(/^-{1}(.+)$/) || (argv[i - 1]||"").match(/^-{1}(.+)$/));
 });
+//console.log(args);
 
 global.customNameScape = {
     isDeving:false
@@ -27,12 +28,14 @@ if(fs.existsSync("./package.json")){
     }
 }
 
-if(args.length<2){
-    console.log("[usesage] git-template requires two or three param");
-    console.log("[example] git-template [username/reponame] [new projct name] [branch name](optional,default 'master')")
-}else{
-    var gitProjectTemplate = require("./libs/gitProjectTemplate.js");
+exports.run = function(){
+    if(args.length<2||args.length>3){
+        console.log("[usesage] git-template requires two or three param");
+        console.log("[example] git-template [username/reponame] [new projct name] [branch name](optional,default 'master')")
+    }else{
+        var gitProjectTemplate = require("./libs/gitProjectTemplate.js");
 
-    var project = new gitProjectTemplate(opts["repo"]||opts["r"]||"git",args[0],args[1],args[2]||"master");
-    project.start();
-}
+        var project = new gitProjectTemplate(opts["repo"]||opts["r"]||"git",args[0],args[1],args[2]||"master");
+        project.start();
+    }
+};

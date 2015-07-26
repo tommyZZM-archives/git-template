@@ -1,22 +1,36 @@
 {
   "name": "git-template",
-  "version": "0.0.1",
+  "author": {
+    "name": "tommyZZM"
+  },
+  "version": "0.0.66",
   "description": "a tool for you to create a new project use a github repository as template.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts": {},
+  "preferGlobal": true,
+  "license": "BSD",
+  "keywords": [
+    "project",
+    "generator",
+    "downloader",
+    "git",
+    "github",
+    "gulp"
+  ],
+  "bugs": {
+    "url": "https://github.com/tommyZZM/git-template/issues"
   },
-  "author": "",
-  "license": "ISC",
-  "peerDependencies": {
-    "gulp": "^3.9.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tommyZZM/git-template"
   },
   "bin": {
-    "git-template": "./index.js"
+    "git-template": "./bin/git-template"
   },
   "dependencies": {
     "chalk": "^1.1.0",
     "dateformat": "^1.0.11",
+    "green": "^0.1.3",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
     "gulp-download": "0.0.1",
@@ -25,7 +39,6 @@
     "gulp-util": "^3.0.6",
     "harmonious": "^0.5.17",
     "iconv-lite": "^0.4.11",
-    "merge-stream": "^0.1.8",
     "through": "^2.3.8"
   }
 }

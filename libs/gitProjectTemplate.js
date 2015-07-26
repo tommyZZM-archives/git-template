@@ -1,8 +1,9 @@
 /**
  * Created by tommyZZM on 2015/7/26.
  */
+var path = require("path");
 var https = require('https');
-var cp_spwan = require("child_process").spawn;
+var cp = require("child_process");
 var iconv = require("iconv-lite");
 //var gulp_util = require("gulp-util");
 
@@ -29,15 +30,25 @@ function gitProjectTemplate(repotype,repo,name,branch){
     this.start = function(){
         if(!that.valid)return;
 
+        //这里要处理以下路径的斜杠,避免在系统环境下运行,单斜杠被转义
+        var gulp_js_path = path.normalize(path.join(__dirname,"..\\","node_modules\\gulp\\bin\\gulp.js"));
+        gulp_js_path = gulp_js_path.split(path.sep).join("\\\\");
+        var cwd_path = path.join(__dirname,"../").split(path.sep).join("\\\\");
+
+        console.log(gulp_js_path,cwd_path);
+
         //创建一个子进程,来运行gulp
-        var gulp_download = cp_spwan("node",["node_modules\\gulp\\bin\\gulp.js","--silent"],{
+        var gulp_download = cp.spawn("node",[gulp_js_path],{
             encoding: 'utf8',
             timeout: 0,
             maxBuffer: 200*1024,
             killSignal: 'SIGTERM',
             stdio: ['pipe', 'pipe', 'pipe',"ipc"],//建立管道通信
-            cwd: process.cwd(),
-            env: process.env
+            cwd: path.join(__dirname,"../")
+        });
+
+        gulp_download.stderr.on('data',function(data){
+            console.log(iconv.decode(data, 'utf8'));
         });
 
         gulp_download.stdout.on('data', function(data) {
@@ -75,7 +86,7 @@ function gitProjectTemplate(repotype,repo,name,branch){
 
         gulp_download.on('exit', function(code) {
             if(code === 1){
-                log("red",chalk.red("template create fail"));
+                log("red",chalk.red("template create fail"),code);
             }
         });
     };
