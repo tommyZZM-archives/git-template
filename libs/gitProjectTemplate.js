@@ -28,14 +28,19 @@ function gitProjectTemplate(repotype,repo,name,branch){
     };
 
     this.start = function(){
+        if(fs.existsSync(path.join(process.cwd(),that.name))){
+            log("yellow","path",that.name,"already exists!");
+            return;
+        }
+
         if(!that.valid)return;
 
         //这里要处理以下路径的斜杠,避免在系统环境下运行,单斜杠被转义
-        var gulp_js_path = path.normalize(path.join(__dirname,"..\\","node_modules\\gulp\\bin\\gulp.js"));
-        gulp_js_path = gulp_js_path.split(path.sep).join("\\\\");
-        var cwd_path = path.join(__dirname,"../").split(path.sep).join("\\\\");
+        var gulp_js_path = path.join(__dirname,"..\\","node_modules\\gulp\\bin\\gulp.js");
+        //gulp_js_path = gulp_js_path.split(path.sep).join("\\\\");
+        //var cwd_path = path.join(__dirname,"../").split(path.sep).join("\\\\");
 
-        console.log(gulp_js_path,cwd_path);
+        //console.log(gulp_js_path,cwd_path);
 
         //创建一个子进程,来运行gulp
         var gulp_download = cp.spawn("node",[gulp_js_path],{
