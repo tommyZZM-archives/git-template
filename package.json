@@ -1,0 +1,31 @@
+{
+  "name": "git-template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "bin": {
+    "git-template": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^1.1.0",
+    "dateformat": "^1.0.11",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-download": "0.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-unzip": "^0.1.3",
+    "gulp-util": "^3.0.6",
+    "harmonious": "^0.5.17",
+    "iconv-lite": "^0.4.11",
+    "merge-stream": "^0.1.8",
+    "through": "^2.3.8"
+  }
+}
