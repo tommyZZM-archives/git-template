@@ -1,6 +1,7 @@
 /**
  * Created by tommyZZM on 2015/7/26.
  */
+var fs = require("fs");
 var path = require("path");
 var https = require('https');
 var cp = require("child_process");
