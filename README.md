@@ -1,5 +1,7 @@
 # git-template
 
+[![npm](https://nodei.co/npm/git-template.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/git-template)
+
 [![taobaonpm](https://img.shields.io/badge/taonpm-0.0.661-red.svg?style=flat-square)](http://npm.taobao.org/package/git-template)
 
 git-template 是让你能从一个github仓库(目前只支持github)做作为模板,创建新项目的工具。
