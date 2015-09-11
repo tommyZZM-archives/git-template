@@ -3,7 +3,7 @@
   "author": {
     "name": "tommyZZM"
   },
-  "version": "0.0.662",
+  "version": "0.0.663",
   "description": "a tool for you to create a new project use a github repository as template.",
   "main": "index.js",
   "scripts": {},
